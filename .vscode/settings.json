@@ -1,0 +1,6 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/7868a35a-a967-4907-97a0-b8e917d660b7/microsoft.web/sites/subscriptions/7868a35a-a967-4907-97a0-b8e917d660b7/resourceGroups/SBSegAPI/providers/Microsoft.Web/sites/sbseg",
+    "appService.deploySubpath": "Backend\\Manager\\src\\Manager.API",
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true
+}
