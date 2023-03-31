@@ -177,6 +177,18 @@ class UserRepository {
     });
     return userResponse;
   }
+
+  async updateEmailVerificationToken(id: string) {
+    const users: Users = await database.users.update({
+      where: {
+        id: id,
+      },
+      data: {
+        verified: true,
+      },
+    });
+    return users;
+  }
 }
 
 export { UserRepository };

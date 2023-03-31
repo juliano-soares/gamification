@@ -25,7 +25,7 @@ class RefreshTokenUserController extends BaseController {
     return this.callUseCase(
       await this.refreshTokenUserUseCase.execute(req.refreshToken),
       res,
-      StatusCode.Accepted,
+      StatusCode.OK,
     );
   }
 }

@@ -1,35 +1,28 @@
-import { BaseController, StatusCode } from "@expressots/core";
+import { BaseController } from "@expressots/core";
 import {
   controller,
   httpGet,
   requestParam,
   response,
 } from "inversify-express-utils";
-import {
-  IEmailVerificationUserResponseDTO,
-  IEmailVerificationUserResquestDTO,
-} from "./emailverification-user.dto";
+import { IEmailVerificationUserResquestDTO } from "./emailverification-user.dto";
 import { EmailVerificationUserUseCase } from "./emailverification-user.usecase";
 
 @controller("/")
-class DeleteUserController extends BaseController {
+class EmailVerificationUserController extends BaseController {
   constructor(
     private emailVerificationUserUseCase: EmailVerificationUserUseCase,
   ) {
     super("email-verification-user-controller");
   }
 
-  @httpGet("verify/:token")
+  @httpGet("verify-email/:token")
   async execute(
     @requestParam() data: IEmailVerificationUserResquestDTO,
     @response() res: any,
-  ): Promise<IEmailVerificationUserResponseDTO | null> {
-    return this.callUseCase(
-      await this.emailVerificationUserUseCase.execute(data),
-      res,
-      StatusCode.Created,
-    );
+  ) {
+    return res.send(await this.emailVerificationUserUseCase.execute(data));
   }
 }
 
-export { DeleteUserController };
+export { EmailVerificationUserController };

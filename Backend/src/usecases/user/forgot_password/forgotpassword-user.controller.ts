@@ -25,7 +25,7 @@ class ForgotPasswordUserController extends BaseController {
     return this.callUseCase(
       await this.forgotPasswordUserUseCase.execute(req),
       res,
-      StatusCode.Accepted,
+      StatusCode.OK,
     );
   }
 }

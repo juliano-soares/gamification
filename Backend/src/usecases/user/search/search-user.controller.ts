@@ -26,7 +26,7 @@ class SearchUserController extends BaseController {
     return this.callUseCase(
       await this.searchUserUseCase.execute(req),
       res,
-      StatusCode.Accepted,
+      StatusCode.OK,
     );
   }
 }

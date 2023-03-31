@@ -222,3 +222,8 @@ CronJob para remover usuarios criados que nao tiveram sido verificados apos 24h 
 [ ] Comprar incresso de evento
 [ ] Meus eventos cadastrados
 [ ] Acessar algum avento que estou cadastrado
+
+
+## Comands
+docker-compose up
+npx prisma migrate dev --name ...

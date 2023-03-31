@@ -21,7 +21,7 @@ class GenerateEmailVerificationToken {
         process.env.JWT_SECRET,
         {
           subject: user.id,
-          expiresIn: "1h",
+          expiresIn: "24h",
         },
       );
 

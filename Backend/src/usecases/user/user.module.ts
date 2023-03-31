@@ -8,6 +8,7 @@ import { RefreshTokenUserController } from "./refresh_token/refresh-token-user.c
 import { DeleteUserController } from "./delete/delete-user.controller";
 import { ForgotPasswordUserController } from "./forgot_password/forgotpassword-user.controller";
 import { ResetPasswordUserController } from "./reset_password/resetpassword-user.controller";
+import { EmailVerificationUserController } from "./email_verification/emailverification-user.controller";
 
 const UserModule = CreateModule([
   CreateUserController,
@@ -19,6 +20,7 @@ const UserModule = CreateModule([
   DeleteUserController,
   ForgotPasswordUserController,
   ResetPasswordUserController,
+  EmailVerificationUserController,
 ]);
 
 export { UserModule };

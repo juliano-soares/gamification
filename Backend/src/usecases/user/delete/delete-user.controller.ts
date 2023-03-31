@@ -27,7 +27,7 @@ class DeleteUserController extends BaseController {
     return this.callUseCase(
       await this.deleteUserUseCase.execute(data.id),
       res,
-      StatusCode.Created,
+      StatusCode.OK,
     );
   }
 }

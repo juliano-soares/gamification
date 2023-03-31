@@ -8,6 +8,9 @@ import {
 import { UserRepository } from "../../../repositories/user.repository";
 import { Users } from "../../../entities/user";
 import { GenerateQRCode } from "../../../providers/qrcode/generate-qrcode";
+import { GenerateEmailVerificationToken } from "../../../providers/tokens/generate-email-verification-token";
+import { Nodemailer } from "../../../providers/email/nodemailer-config";
+import process from "process";
 
 @provide(CreateUserUseCase)
 class CreateUserUseCase {
@@ -79,7 +82,33 @@ class CreateUserUseCase {
       const qrcode = new GenerateQRCode();
       await qrcode.execute(user.id);
 
-      // Send email to user for verification
+      // Generate token Send email to user for verification
+      const emailVerification = new GenerateEmailVerificationToken();
+      const token = await emailVerification.execute(user);
+      const link = process.env.APP_URL + `/verify-email/${token}`;
+      const options = {
+        from: "gamification@gmail.com",
+        to: user.email,
+        subject: "Email verification",
+        template: "email_verification",
+        context: {
+          link,
+          name: user.name,
+        },
+      };
+
+      Nodemailer.sendMail(options, (err) => {
+        if (err) {
+          console.log(err);
+          Report.Error(
+            new AppError(
+              StatusCode.BadRequest,
+              "Error sending email verification",
+              "create-user-usecase",
+            ),
+          );
+        }
+      });
 
       let response: ICreateUserResponseDTO;
 

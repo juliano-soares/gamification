@@ -2,17 +2,13 @@ import { AppError, Report, StatusCode } from "@expressots/core";
 import { injectable } from "inversify";
 import { BaseMiddleware } from "inversify-express-utils";
 import { decode } from "jsonwebtoken";
-import * as express from "express";
+import { Request, Response, NextFunction } from "express";
 import { Users } from "../../entities/user";
 import { UserRepository } from "../../repositories/user.repository";
 
 @injectable()
 export class EnsureAdmin extends BaseMiddleware {
-  public async handler(
-    req: express.Request,
-    res: express.Response,
-    next: express.NextFunction,
-  ) {
+  public async handler(req: Request, res: Response, next: NextFunction) {
     try {
       const authToken = req.headers.authorization;
 

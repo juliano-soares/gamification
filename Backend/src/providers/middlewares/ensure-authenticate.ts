@@ -2,15 +2,11 @@ import { AppError, Report, StatusCode } from "@expressots/core";
 import { injectable } from "inversify";
 import { BaseMiddleware } from "inversify-express-utils";
 import { verify } from "jsonwebtoken";
-import * as express from "express";
+import { Request, Response, NextFunction } from "express";
 
 @injectable()
 export class EnsureAuthenticate extends BaseMiddleware {
-  public handler(
-    req: express.Request,
-    res: express.Response,
-    next: express.NextFunction,
-  ) {
+  public handler(req: Request, res: Response, next: NextFunction) {
     try {
       const authToken = req.headers.authorization;
 

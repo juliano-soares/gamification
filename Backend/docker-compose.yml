@@ -1,5 +1,12 @@
 version: '3'
 services:
+  app:
+    build: .
+    command: yarn start
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/usr/app
   db:
     image: postgres
     restart: always
@@ -8,7 +15,7 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DATABABSE: gamification
     ports:
-      - 5432:5432
+      - 5433:5433
     volumes:
       - dbdata:/var/lib/postgresql/data
 
